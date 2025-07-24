@@ -11,7 +11,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Transform playerHead;
 
     private CharacterController characterController;
-    private Transform playerCamera;
+    [HideInInspector] public Transform playerCamera;
     private Vector3 moveVector;
     private float rotationX;
 
@@ -41,7 +41,7 @@ public class PlayerController : NetworkBehaviour
 
         moveVector = transform.forward * v + transform.right * h;
 
-        characterController.Move(moveVector * _speed * Time.deltaTime);
+        characterController.Move(moveVector.normalized * _speed * Time.deltaTime);
     }
 
     private void FirstPerson()
